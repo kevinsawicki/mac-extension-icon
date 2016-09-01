@@ -1,6 +1,6 @@
 {
   "name": "finder-icon",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Get the Finder icon for an extension",
   "main": "index.js",
   "keywords": [
