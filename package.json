@@ -1,0 +1,17 @@
+{
+  "name": "finder-icon",
+  "version": "0.0.0",
+  "description": "Get the Finder icon for an extension",
+  "main": "index.js",
+  "keywords": [
+    "Finder",
+    "Preview",
+    "icon",
+    "NSImage"
+  ],
+  "author": "Kevin Sawicki",
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.4.0"
+  }
+}
