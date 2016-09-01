@@ -1,16 +1,22 @@
 {
   "targets": [
     {
-      "target_name": "finder-icon",
-      "sources": [ "FinderIcon.mm" ],
+      "target_name": "mac-extension-icon",
       "include_dirs": [
         "<!(node -e \"require('nan')\")"
       ],
-      "link_settings": {
-        "libraries": [
-          "-framework", "AppKit"
-        ]
-      }
+      "conditions": [
+        ['OS=="mac"', {
+          "sources": [
+            "MacExtensionIcon.mm",
+          ],
+          "link_settings": {
+            "libraries": [
+              "-framework", "AppKit"
+            ]
+          }
+        }],
+      ]
     }
   ]
 }

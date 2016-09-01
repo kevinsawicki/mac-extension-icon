@@ -58,4 +58,4 @@ void Init(v8::Local<v8::Object> exports) {
                Nan::New<v8::FunctionTemplate>(GetIconForExtension)->GetFunction());
 }
 
-NODE_MODULE(finder_icon, Init)
+NODE_MODULE(mac_extension_icon, Init)
