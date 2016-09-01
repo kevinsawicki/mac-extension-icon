@@ -1,4 +1,4 @@
-# finder-icon
+# mac-extension-icon
 
 Get the PNG Finder image for a file extension.
 
