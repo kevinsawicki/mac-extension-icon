@@ -7,43 +7,41 @@ class IconWorker : public Nan::AsyncWorker {
   IconWorker(Nan::Callback *callback, std::string extension)
     : AsyncWorker(callback),
       extension(extension),
-      data(nullptr),
-      dataSize(-1) {
+      pngData(nullptr) {
 
   }
 
   ~IconWorker() {
-    delete[] data;
+    if (pngData != nullptr) {
+      [pngData release];
+      pngData = nullptr;
+    }
   }
 
   void Execute () {
     NSString* fileType = [NSString stringWithCString:extension.c_str()
                                             encoding:[NSString defaultCStringEncoding]];
     NSImage* iconImage = [[NSWorkspace sharedWorkspace] iconForFileType:fileType];
-    NSData*  tiffData = [iconImage TIFFRepresentation];
+    NSData* tiffData = [iconImage TIFFRepresentation];
     NSBitmapImageRep* bitmapRep = [NSBitmapImageRep imageRepWithData:tiffData];
-    NSDictionary* imageProps = [NSDictionary dictionary];
-    NSData* pngData = [bitmapRep representationUsingType:NSPNGFileType
-                                              properties:imageProps];
-
-    dataSize = [pngData length];
-    data = new char[dataSize];
-    memcpy(data, [pngData bytes], dataSize);
+    pngData = [bitmapRep representationUsingType:NSPNGFileType
+                                      properties:[NSDictionary dictionary]];
+    [pngData retain];
   }
 
   void HandleOKCallback () {
     Nan::HandleScope scope;
+    const char* rawBytes = reinterpret_cast<const char*>([pngData bytes]);
     v8::Local<v8::Value> argv[] = {
       Nan::Null(),
-      Nan::CopyBuffer(data, dataSize).ToLocalChecked()
+      Nan::CopyBuffer(rawBytes, [pngData length]).ToLocalChecked()
     };
     callback->Call(2, argv);
   }
 
  private:
   std::string extension;
-  char* data;
-  int dataSize;
+  NSData* pngData;
 };
 
 NAN_METHOD(GetIconForExtension) {
