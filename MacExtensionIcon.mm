@@ -13,7 +13,7 @@ class IconWorker : public Nan::AsyncWorker {
   }
 
   ~IconWorker() {
-    delete data;
+    delete[] data;
   }
 
   void Execute () {
