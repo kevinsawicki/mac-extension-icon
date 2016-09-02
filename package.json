@@ -1,6 +1,6 @@
 {
   "name": "mac-extension-icon",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Get the Finder icon for an extension",
   "main": "index.js",
   "keywords": [
