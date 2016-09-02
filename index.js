@@ -6,4 +6,12 @@ if (process.platform === 'darwin') {
     if (typeof callback !== 'function') callback = function () {}
     getIconForExtension(extension, callback)
   }
+} else {
+  exports.getIconForExtension = function (extension, callback) {
+    if (typeof callback === 'function') {
+      process.nextTick(function () {
+        callback(new Error('API only available on macOS'))
+      })
+    }
+  }
 }
