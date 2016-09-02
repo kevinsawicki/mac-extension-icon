@@ -1,8 +1,11 @@
 {
   "name": "mac-extension-icon",
   "version": "0.0.3",
-  "description": "Get the Finder icon for an extension",
+  "description": "Get the Finder icon for a file extension",
   "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
   "keywords": [
     "Finder",
     "Preview",
@@ -11,7 +14,9 @@
   ],
   "author": "Kevin Sawicki",
   "license": "MIT",
+  "repository": "https://github.com/kevinsawicki/mac-extension-icon",
   "dependencies": {
+    "mocha": "^3.0.2",
     "nan": "^2.4.0"
   }
 }
