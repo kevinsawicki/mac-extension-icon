@@ -1,4 +1,4 @@
-# mac-extension-icon
+# mac-extension-icon [![Build Status](https://travis-ci.org/kevinsawicki/mac-extension-icon.svg?branch=master)](https://travis-ci.org/kevinsawicki/mac-extension-icon)
 
 Get the PNG Finder image for a file extension.
 
